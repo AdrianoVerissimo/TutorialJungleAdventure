@@ -25,7 +25,6 @@ public class PlayerBehaviour : MonoBehaviour
 	private bool estaNaParede;
 	private bool estaVivo;
 	private bool viradoParaDireita;
-	private bool estaPulando;
 
 	private float axis;
 
@@ -43,31 +42,27 @@ public class PlayerBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		estaNoChao = Physics2D.OverlapCircle (verificaChao.transform, raioValidaChao, solido);
-		estaNaParede = Physics2D.OverlapCircle (verificaParede.transform, raioValidaParede, solido);
+		estaNoChao = Physics2D.OverlapCircle (verificaChao.position, raioValidaChao, solido);
+		estaNaParede = Physics2D.OverlapCircle (verificaParede.position, raioValidaParede, solido);
 
-		if (estaNoChao)
-			estaPulando = false;
+		if (estaVivo)
+		{
+			axis = Input.GetAxisRaw ("Horizontal");
 
-		axis = Input.GetAxisRaw ("Horizontal");
+			estaAndando = Mathf.Abs (axis) > 0;
 
-		estaAndando = Mathf.Abs (axis) > 0;
+			if (axis > 0f && !viradoParaDireita)
+				Flip ();
+			else if (axis < 0f && viradoParaDireita)
+				Flip ();
 
-		if (axis > 0f && !viradoParaDireita)
-			Flip ();
-		else if (axis < 0f && viradoParaDireita)
-			Flip ();
-
-		if (Input.GetButtonDown ("Jump") && estaNoChao)
-			estaPulando = true;
+			if (Input.GetButtonDown ("Jump") && estaNoChao)
+				rb.AddForce (tr.up * forcaPulo);
+		}
 	}
 
 	void FixedUpdate()
 	{
-
-		if (estaPulando)
-			rb.AddForce (tr.up * forcaPulo);
-
 		if (estaAndando && !estaNaParede)
 		{
 			if (viradoParaDireita)
@@ -82,5 +77,14 @@ public class PlayerBehaviour : MonoBehaviour
 		viradoParaDireita = !viradoParaDireita;
 
 		tr.localScale = new Vector2 (-tr.localScale.x, tr.localScale.y);
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+
+		Gizmos.DrawWireSphere (verificaChao.position, raioValidaChao);
+		Gizmos.DrawWireSphere (verificaParede.position, raioValidaParede);
+
 	}
 }
