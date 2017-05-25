@@ -58,6 +58,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 			if (Input.GetButtonDown ("Jump") && estaNoChao)
 				rb.AddForce (tr.up * forcaPulo);
+
+			Animations ();
 		}
 	}
 
@@ -77,6 +79,13 @@ public class PlayerBehaviour : MonoBehaviour
 		viradoParaDireita = !viradoParaDireita;
 
 		tr.localScale = new Vector2 (-tr.localScale.x, tr.localScale.y);
+	}
+
+	void Animations()
+	{
+		an.SetBool ("Andando", estaNoChao && estaAndando);
+		an.SetBool("Pulando", !estaNoChao);
+		an.SetFloat ("VelVertical", rb.velocity.y);
 	}
 
 	void OnDrawGizmosSelected()
