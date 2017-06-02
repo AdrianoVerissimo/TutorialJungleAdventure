@@ -164,6 +164,29 @@ Transform:
   m_Father: {fileID: 1720042398}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1400163804 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1750964397043982, guid: d6f41d80c8896be46ad09a23c6cfecee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1893134313}
+--- !u!251 &1400163807
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1400163804}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1720042395
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +254,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1273072847
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 983fdce1b9edd5f42bf676f21b4af7ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -322,7 +345,7 @@ MonoBehaviour:
   verificaChao: {fileID: 1256059281}
   verificaParede: {fileID: 913812128}
   velocidade: 5
-  forcaPulo: 650
+  forcaPulo: 850
   raioValidaChao: 0.2
   raioValidaParede: 0.3
   solido:
@@ -416,12 +439,12 @@ Prefab:
     - target: {fileID: 23343005473110504, guid: d6f41d80c8896be46ad09a23c6cfecee,
         type: 2}
       propertyPath: m_SortingLayerID
-      value: -261589137
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23343005473110504, guid: d6f41d80c8896be46ad09a23c6cfecee,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23444696251494996, guid: d6f41d80c8896be46ad09a23c6cfecee,
         type: 2}
@@ -502,6 +525,21 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23486422513579146, guid: d6f41d80c8896be46ad09a23c6cfecee,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -261589137
+      objectReference: {fileID: 0}
+    - target: {fileID: 23486422513579146, guid: d6f41d80c8896be46ad09a23c6cfecee,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 60617049301099224, guid: d6f41d80c8896be46ad09a23c6cfecee,
+        type: 2}
+      propertyPath: m_UsedByEffector
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6f41d80c8896be46ad09a23c6cfecee, type: 2}
@@ -518,6 +556,7 @@ GameObject:
   - component: {fileID: 2108569727}
   - component: {fileID: 2108569726}
   - component: {fileID: 2108569725}
+  - component: {fileID: 2108569730}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -595,3 +634,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2108569730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2108569724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1612ce712d9634cbc6e1bda480d464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayX: 0.2
+  delayY: 0.2
+  player: {fileID: 1720042398}
+  bounds: 1
+  minCameraPos: {x: 0.3, y: 0.9, z: -10}
+  maxCameraPos: {x: 97, y: 5, z: -10}
